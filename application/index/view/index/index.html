@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta name="renderer" content="webkit">
+    <meta charset="UTF-8">
+    <title>创新开发平台-河南理工大学</title>
+    <link rel="icon" href="__RES__/common/favicon.ico" type="image/x-icon"/>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="__RES__/common/bootstrap-2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__RES__/index/font-awesome.min.css">
+    <link rel="stylesheet" href="__RES__/index/fakeLoader.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #d3d3d3;
+            font-family: "微软雅黑";
+        }
+
+        .carousel-caption {
+            opacity: 1;
+            transition: all 0.3s;
+        }
+
+        .item img{
+            height: 300px;
+            width: 100%;
+        }
+        .item:hover > .carousel-caption {
+            opacity: 0.2;
+        }
+
+        .swift h4 {
+            font-weight: normal;
+        }
+
+        .swift ul {
+            list-style: circle;
+        }
+
+        .swift li {
+            padding: 8px 0;
+            font-size: 16px;
+        }
+
+        .swift a {
+            transition: all 0.3s 0s;
+        }
+
+        .swift a:hover {
+            margin-left: 1pc;
+            color: black;
+        }
+    </style>
+    <!--javascript-->
+    <script src="__RES__/common/js/jquery-2.1.1.min.js"></script>
+    <script src="__RES__/index/fakeLoader.min.js"></script>
+    <script src="__RES__/common/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="fakeLoader"></div>
+<script type="text/javascript">
+    $("#fakeLoader").fakeLoader({
+        timeToHide: 1000,
+        bgColor: "#333",
+        spinner: "spinner7"
+    });
+</script>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="{url('index')}" style="padding: 8px 20px 0;cursor: pointer;" title="刷新并回到页面顶部"><img
+                    src="__RES__/index/img/logo.png" style="height: 30px;margin-top: -3px"> 创新开发平台</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active">
+                        <a>首页</a>
+                    </li>
+                    <li>
+                        <a href="/components">元件库</a>
+                    </li>
+                    <li>
+                        <a href="{url('library')}">图书库</a>
+                    </li>
+                    <li>
+                        <a href="{url('docs')}">文档中心</a>
+                    </li>
+                    <li>
+                        <a href="{url('files')}">资源中心</a>
+                    </li>
+                    <li>
+                        <a href="{url('bus')}">公交助手</a>
+                    </li>
+                    <li>
+                        <a href="{url('attendance')}">考勤系统</a>
+                    </li>
+                    <li>
+                        <a href="{url('competition')}">学科竞赛</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group pull-right">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    {empty name="name"}
+                    <span class='btn btn-small' style='color: #00a000;margin-top: 3px'>登录</span>
+                    {else /}
+                    <img src='__RES__/index/img/center.png' style='height: 24px;margin-top: 3px;cursor: pointer'>
+                    {/empty}
+                </a>
+                <ul class="dropdown-menu">
+                    {empty name="name"}
+                    <li><a href="/login"><i class='icon-user'></i>　登录</a></li>
+                    <li><a href="/login"><i class='icon-plane'></i>　注册账号</a></li>
+                    {else /}
+                    <li><a href="{url('zone')}"><i class='icon-home'></i>　个人中心</a></li>
+                    <li><a href="{url('attendance')}"><i class='icon-calendar'></i>　考勤明细</a></li>
+                    <li><a href="/logout"><i class='icon-fire'></i>　退出账号</a></li>
+                    <li><a href="{url('joinus')}"><i class='icon-star'></i>　加入我们</a></li>
+                    {/empty}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container"
+     style="box-shadow: 0 0 2.5em #5d656c;background: rgb(255, 255, 255) none repeat scroll 0 0;padding: 60px 30px 0;">
+    <div class="row">
+        <div class="span8">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                    <li data-target="#myCarousel" data-slide-to="5"></li>
+                    <li data-target="#myCarousel" data-slide-to="6"></li>
+                </ol>
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="zone/zone.php"><img src="__RES__/index/img/autoCut.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>自动裁剪技术</h4>
+                            <p>基于天诚盛业人脸识别技术,让照片上传更便捷,更规范</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="admin/person.php"><img src="__RES__/index/img/miaomiao.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>小喵喵考勤系统！</h4>
+                            <p>你在吗？</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a><img src="__RES__/index/img/gnosis.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>Gnosis —— 深度好文</h4>
+                            <p>一名理工大学生花费数百小时设计的博客平台，点击进入博客介绍</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="monitor/index.php"><img src="__RES__/index/img/monitor.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>1420监测站——实时空气质量数据</h4>
+
+                            <p>温度和空气质量数据查看，空气质量数据采用美标计算公式。</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="games/FlyToTheEnd"><img src="__RES__/index/img/aviator.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>小游戏——超级飞行员</h4>
+
+                            <p>休闲益智小游戏</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="functions/doc/docs.php"><img src="__RES__/index/img/doc.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>文档中心 & 资源中心上线</h4>
+
+                            <p>
+                                文档中心和资源中心上线测试，这两个栏目主要用来分享一些666的资源，希望大家踊跃上传，积极分享。</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="cropper"><img src="__RES__/index/img/cropper.jpg"></a>
+                        <div class="carousel-caption">
+                            <h4>图片编辑工具——Cropper测试上线</h4>
+                            <p>快速制作各种比例、各种大小的图片</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel nav -->
+                <div class="com_img">
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev"
+                       style="border: none;background-color: #F40;top: 50%">&lsaquo;</a>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next"
+                       style="border: none;background-color: #F40;top: 50%">&rsaquo;</a>
+                </div>
+            </div>
+        </div>
+        <div class="span4" style="padding-top: 6px">
+            <blockquote>
+                <p>
+                    <i class="icon-link" style="color: #0088cc"> </i><a href="monitor/" target="_blank"
+                                                                        style="font-size: 16px">雾霾监测</a>
+                </p>
+                <small>关键词 <cite>免费、实时PM2.5监测</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>
+                    <i class="icon-link" style="color: #0088cc"> </i><a href="http://eeec.hpu.edu.cn/DWWZ/ime/gnosis/"
+                                                                        style="font-size: 16px">深度好文博客</a>
+                </p>
+                <small>关键词 <cite>无</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>
+                    <i class="icon-link" style="color: #0088cc"> </i><a href="cropper" target="_blank"
+                                                                        style="font-size: 16px"> Cropper-图片裁剪大师</a>
+                </p>
+                <small>关键词 <cite>快速制作各种尺寸的照片</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>
+                    <i class="icon-link" style="color: #0088cc"> </i><a href="games/FlyToTheEnd" target="_blank"
+                                                                        style="font-size: 16px"> 小游戏-超级飞行员</a>
+                </p>
+                <small>关键词 <cite>娱乐、休闲、益智</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>
+                    <i class="icon-link" style="color: #0088cc"> </i><a href="HpuCloud/index.html" target="_blank"
+                                                                        style="font-size: 16px"> 物联网云-HpuCloud</a>
+                </p>
+                <small>关键词 <cite>云端数据可视化的物联网云服务</cite></small>
+            </blockquote>
+        </div>
+    </div>
+    <!--fade添加渐变效果-->
+    <div class="row">
+        <div class="span8">
+            <div class="tabbable" id="tabs-987099">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#panel-0" data-toggle="tab"><i class="icon-bullhorn"></i>&nbsp;天气预报</a>
+                    </li>
+                    <li>
+                        <a href="#panel-1" data-toggle="tab"><i class="icon-umbrella"></i>&nbsp;通知公告</a>
+                    </li>
+                    <li>
+                        <a href="#panel-2" data-toggle="tab"><i class="icon-bell-alt"></i>&nbsp;微信精选</a>
+                    </li>
+                    <li>
+                        <a href="#panel-3" data-toggle="tab"><i class="icon-bookmark"></i>&nbsp;深度好文</a>
+                    </li>
+                    <li>
+                        <a href="#panel-4" data-toggle="tab"><i class="icon-rss"></i>&nbsp;实用工具</a>
+                    </li>
+                </ul>
+                <div class="tab-content" style="margin-bottom: 20px">
+                    <div class="tab-pane fade in active" id="panel-0">
+
+                    </div>
+                    <div class="tab-pane fade" id="panel-1">
+                        <div class="media">
+                            <i class="icon-hand-right icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="http://eeec.hpu.edu.cn/laravel/public/">平台迁移至 laravel 5</a>
+                                </h4>正在全速迁移,完成后可以提供更加安全可靠的互联网服务
+                            </div>
+                        </div>
+                        <div class="media">
+                            <i class="icon-hand-right icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="bus">“雾霾监测”网页版重大升级！！！</a>
+                                </h4>“雾霾监测”网页版重大升级，数据分析算法优化，传感器算法优化，SVG画图算法优化。已支持同时显示国标、美标和PM2.5浓度值。
+                            </div>
+                        </div>
+                        <div class="media">
+                            <i class="icon-hand-right icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="library/library.php">公交助手·焦作 版本升级</a>
+                                </h4>查询速度更快、流量更省，界面设计优化...
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="panel-2">
+
+                    </div>
+                    <div class="tab-pane fade" id="panel-3">
+                        <div class="media">
+                            <i class="icon-book icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="http://eeec.hpu.edu.cn/DWWZ/ime/gnosis/index.php?contentId=4">星愿 - 深度好文</a>
+                                </h4>
+                                <span>
+                                    我小学有很长一段时间是在农村度过，那些年开始萌动的青春期常常使我们感到尴尬不已。 为了掩饰内心的躁动……
+                                </span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <i class="icon-book icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="http://eeec.hpu.edu.cn/DWWZ/ime/gnosis/index.php?contentId=13">QQ音乐三巨头 -
+                                        深度好文</a>
+                                </h4>
+                                <span>
+                                    2008年夏天，我爸送了我一个MP3作为初中毕业的礼物，我拿到MP3后，第一件事就是去找老铁。
+                                </span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <i class="icon-book icon-3x pull-left"></i>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="http://eeec.hpu.edu.cn/DWWZ/ime/gnosis/index.php?contentId=14">在人大，校园卡挂失48小时以后才能补办
+                                        - 深度好文</a>
+                                </h4>
+                                <span>
+                                    【写在前面的前面的话】这是一个顶有意思的故事，我猜想作者也是一个顶有意思的人。首先非常感谢这位学长能同意我的推送。……
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="panel-4">
+                        <div class="media">
+                            <img class="pull-left" src="http://hpu.lifanko.cn/IPSwitch/img/IP.png" width="64px">
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="http://hpu.lifanko.cn/IPSwitch">IP切换助手</a></h4>
+                                快速、方便地在校园网与外网间切换。
+                            </div>
+                        </div>
+                        <div class="media">
+                            <img src="img/security.png" class="pull-left" style="width: 64px">
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="http://hpu.lifanko.cn/UsartLine">UsartLine-串口画线</a></h4>
+                                UsartLine是一款使用Java语言编写的通过串口绘线的工具软件，该程序能够将从串口接收到的数字字符串立即转换为数字并绘制连线。
+                            </div>
+                        </div>
+                        <div class="media">
+                            <img src="img/calculator2.png" class="pull-left" style="width: 64px">
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    体侧成绩计算器
+                                </h4> 暂未编写相应代码，已列入编写计划。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span4" style="margin-top: 37px">
+            <div class="swift" style="width: 300px;margin-top: -2pc">
+                <h4>快速访问：</h4>
+                <ul>
+                    <li><a href="http://www.hpu.edu.cn" target="_blank">河南理工大学官网</a></li>
+                    <li><a href="http://eeec.hpu.edu.cn" target="_blank">HPU电工电子实验中心</a></li>
+                    <li><a href="http://www.hpuedd.com/" target="_blank">HPU大学生电器开发部</a></li>
+                    <li><a href="http://bbs.hpuedd.com/">大学生电气开发部社区</a></li>
+                    <li><a href="http://eeec.hpu.edu.cn/DWWZ/ime/monitor/" target="_blank">PM2.5空气质量监测系统</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <ul class="thumbnails">
+                <li class="span4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>
+                                <i class="icon-group icon-2x text-error"></i>　<a href="functions/doc/docs.php">文档下载</a>
+                            </h3>
+                            <p>
+                                包含各种程序资源、电路硬件制作资源，电器开发部成员免费共享
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="span4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>
+                                <i class="icon-star icon-2x text-warning"></i>　<a
+                                    href="functions/fruits/aurora">成果展示</a>
+                            </h3>
+
+                            <p>
+                                包含各种程序资源、电路硬件制作资源，电器开发部成员免费共享
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li class="span4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>
+                                <i class="icon-download-alt icon-2x text-success"></i>　<a
+                                    href="functions/file/files.php">资源共享</a>
+                            </h3>
+
+                            <p>
+                                包含各种程序资源、电路硬件制作资源，电器开发部成员免费共享
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container"
+     style="box-shadow: 0 0.4em .8em #5d656c;padding: 10px 30px;margin-bottom: 1%;background-color: rgb(58, 53, 46);border-radius: 0 0 6px 6px;">
+    <div style="color: #f40">
+        Copyright 2016-2017 创新开发平台 Innovative Developing Platform
+    </div>
+</div>
+<script>
+    $('.carousel').carousel({
+        interval: 5000
+    })
+</script>
+</body>
+</html>

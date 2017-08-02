@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="renderer" content="webkit">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="__RES__/common/favicon.ico" type="image/x-icon"/>
+    <title>元件库 - 创新开发平台</title>
+    <!-- Bootstrap -->
+    <link href="__RES__/common/bootstrap-2.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="__RES__/common/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <style>
+        .tipText {
+            margin-bottom: 12px;
+            display: inline-block;
+            background-color: black;
+            color: whitesmoke;
+            padding: 3px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="overflow-y: scroll">
+<div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="" title="重新加载元件库">
+                    {empty name="name"}
+                    元件库
+                    {else /}
+                    {$name}
+                    {/empty}
+                </a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/">首页</a></li>
+                        {notempty name="name"}
+                        <li><a href='../zone/zone.php' target='_blank' style='text-decoration: none'>个人中心</a></li>
+                        {/notempty}
+                        <li><a href="../functions/doc/docs.php">文档中心</a></li>
+                        <li><a href="../functions/file/files.php">资源中心</a></li>
+                        <li><a href="../library/library.php">图书库</a></li>
+                        <li><a href="../admin/person.php">考勤系统</a></li>
+                        <li><a href="../bus">公交助手</a></li>
+                        {empty name="name"}
+                        <li class='active'><a href='/login'>登录 / 注册</a></li>
+                        {else /}
+                        <li><a href='http://lifankohome.wixsite.com/joinus'>加入我们</a></li>
+                        {/empty}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                {notempty name="name"}
+                                <li><a href='/logout'>退出账号</a></li>
+                                {/notempty}
+                                <li><a href="http://www.hpu.edu.cn/www/index.html" title="河南理工大学官网" target="_blank">理工大官网</a>
+                                </li>
+                                <li><a href="http://218.196.240.155/swfweb/hpugg.aspx" target="_blank">最新公告&讲座信息</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="nav-header">版本信息</li>
+                                <li><a href="/admin" style="font-size: 12px">元件库管理系统 v1.7</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://eeec.hpu.edu.cn/DWWZ/ime/gnosis/index.php?contentId=19" style="color: #abea48;">元件借用办法</a></li>
+                    </ul>
+                    <form class="navbar-form pull-right">
+                        <!--防止页面回车刷新-->
+                        <input type="text" class="span2 search" id="keywords" placeholder="快速查找">
+                        <a class="btn searchBtn">搜索</a>
+                    </form>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="visible-desktop"><br><br><br></div>
+        <span id="tip" class="label label-info pull-right"></span>
+        <span id="result" class="clearfix"></span>
+    </div>
+    <div id="hide">
+        <table class='table table-condensed table-striped table-bordered'>
+            <tr>
+                <th>ID</th>
+                <th>元件名</th>
+                <th>型号</th>
+                <th>封装</th>
+                <th>剩余数量</th>
+                <th>借出</th>
+                <th>损坏</th>
+                <th>押金/个</th>
+                <th>元件位置</th>
+            </tr>
+            {volist name="list" id="vo"}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.attribute}</td>
+                <td>{$vo.packing}</td>
+                <td>{$vo.num}</td>
+                <td>{$vo.lend}</td>
+                <td>{$vo.damage}</td>
+                <td>{$vo.price}</td>
+                <td>{$vo.location}</td>
+            </tr>
+            {/volist}
+        </table>
+        <div class="pagination pagination-centered" style="margin-top: -20px">
+        {$list->render()}
+        </div>
+    </div>
+    <div class="well well-small" style="text-align: center">
+        <span class="text-center text-info">2016-2017 &copy; 创新开发平台 Innovative Developing Platform</span>
+    </div>
+</div>
+<!--script-->
+<script src="__RES__/common/js/jquery-2.1.1.min.js"></script>
+<script src="__RES__/common/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="__RES__/components/components.js"></script>
+<script>
+    $('#myModal').on('hidden', function () {
+        location.reload();
+    });
+    $(".pagination").addClass("pagination-centered");
+</script>
+</body>
+</html>

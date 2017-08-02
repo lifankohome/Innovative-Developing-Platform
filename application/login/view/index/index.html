@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 创新开发平台</title>
+    <link rel="stylesheet" href="__RES__/login/style.css">
+    <link rel="icon" href="__RES__/common/favicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <style>
+        body{
+            background: url("__RES__/login/img/{$bg}.jpg") fixed no-repeat center;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    Innovative Developing Platform
+</div>
+<div class="login">
+    <div class="cotn_principal">
+        <div class="cont_centrar">
+            <div class="cont_login">
+                <div class="cont_info_log_sign_up">
+                    <div class="col_md_login">
+                        <div class="cont_ba_opcitiy">
+                            <h2>登录</h2>
+                            <p>登录创新开发平台<br>浏览全站内容，享受全站服务</p>
+                            <button class="btn_login" onClick="cambiar_login()">LOGIN</button>
+                        </div>
+                    </div>
+                    <div class="col_md_sign_up">
+                        <div class="cont_ba_opcitiy">
+                            <h2>注册</h2>
+                            <p>Register Account In<br>Innovative Developing Platform</p>
+                            <button class="btn_sign_up" onClick="cambiar_sign_up()">SIGN UP</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_back_info">
+                    <div class="cont_img_back_grey"><img src="__RES__/login/img/bg.jpg" alt=""/></div>
+                </div>
+                <div class="cont_forms">
+                    <div class="cont_img_back_"><img src="__RES__/login/img/bg.jpg" alt=""/></div>
+                    <div class="cont_form_login"><a href="#" onClick="ocultar_login_sign_up()"><i
+                            class="material-icons">
+                        &#xE5C4;</i></a>
+                        <h2>Login</h2>
+                        <input type="text" id="stuId" placeholder="一卡通号"/>
+                        <input type="password" id="password" placeholder="密码"/>
+                        <button class="btn_login" type="submit" id="login-button" onClick="cambiar_login()">登录</button>
+                    </div>
+                    <div class="cont_form_sign_up"><a href="#" onClick="ocultar_login_sign_up()"><i
+                            class="material-icons">
+                        &#xE5C4;</i></a>
+                        <h2>Sign Up</h2>
+                        <input type="text" id="stuId0" placeholder="一卡通号"/>
+                        <input type="text" id="ID" placeholder="身份证号"/>
+                        <input type="text" id="name" placeholder="姓名"/>
+                        <input type="text" id="class" placeholder="专业班级（例：电信1401）"/>
+                        <input type="tel" id="phone" placeholder="电话"/>
+                        <input type="password" id="password0" placeholder="密码（请仔细确认）"/>
+                        <button class="btn_sign_up" id="register-button" onClick="cambiar_sign_up()">注册 & 登录</button>
+                        <a href="../login0/register_t.html"
+                           style="font-size: 12px;margin-top: 2pc;text-decoration: underline">教师注册请点击这里</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tip">
+        <span class="tipText">Copyright 2017 创新开发平台 Innovative Developing Platform</span>
+    </div>
+</div>
+<script src="__RES__/common/js/jquery-2.1.1.min.js"></script>
+<script src="__RES__/login/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息论与编码课程设计-电信1401</title>
+    <style>
+        table {
+            margin: 0 auto;
+            border: solid #333 1px;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        tr {
+            text-align: center;
+        }
+
+        th {
+            min-width: 12%;
+            border: solid #333 1px;
+        }
+
+        td {
+            border: solid #333 1px;
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center">信息论与编码课程设计</h1>
+<hr style="width: 75%">
+<div style="text-align: center">
+    <h3>1：统计信源熵（任意文本中各字符的数量，计算字符概率，并计算信源熵）</h3>
+    <textarea onkeyup="oneEdit()" id="oneInput"
+              style="width: 70%;height: 100px;font-size: 18px;font-family: 'Courier New'"
+              placeholder="在此处输入字符"></textarea>
+    <p id="oneDetail"></p>
+</div>
+
+<script>
+    var oneElement = document.getElementById("oneInput");
+
+    //    oneEdit();        //先执行一次对浏览器缓存的数据进行显示
+
+    function oneEdit() {
+        var oneValue = oneElement.value;
+        var count = {};                                             //创建对象，作数据容器
+        while (oneValue) {                                          //循环遍历
+            var CountTemp = oneValue.length;                        //获取当前长度
+            var char = oneValue.charAt(0);                          //获取首字符
+            oneValue = oneValue.replace(new RegExp(char, 'g'), ''); //从字符串中删去所有和首字符一样的字符
+            count[char] = CountTemp - oneValue.length;              //长度差的值即为相同的字符的数目
+        }
+        var oneDetail = ""; //动态添加到DOM
+        var P = 0;          //符号概率
+        var PTotal = 0;     //符号概率之和
+        var Zi = 0;         //自信息量
+        var ZiTotal = 0;    //自信息量之和
+        var sym = 0;        //信源熵成员
+        var symTotal = 0;   //信源熵（成员和）
+
+        for (var property in count) {                                                   //按属性遍历对象，把数据从对象中读取出来
+            if (count.hasOwnProperty(property)) {                                       //先判断是否有对应属性（没必要，不写会有警告）
+                P = ((count[property] / oneElement.value.length) * 100).toFixed(1);     //相同属性的数量/字符总数量*100并保留一位小数，得到概率百分数
+                PTotal += parseFloat(P);                                                //得到累加概率
+                Zi = (-Math.log(P / 100) / Math.LN2).toFixed(3);                        //得到自信息量
+                ZiTotal += parseFloat(Zi);                                              //得到累加自信息量
+                sym = (-P / 100 * Math.log(P / 100) / Math.LN2).toFixed(3);             //得到信源熵成员的值
+                symTotal += parseFloat(sym);                                            //得到信源熵
+                //格式化数据适合表格
+                oneDetail = oneDetail + "<tr><td>" + property + "</td><td>" + count[property] + "</td><td>" + P + "%</td><td>" + Zi + "</td></td><td>" + sym + "</td></tr>";
+            } else {
+                oneDetail = "您输入的数据类型不正确！";
+            }
+        }
+        //表格数据添加进DOM
+        document.getElementById("oneDetail").innerHTML = "<table><tr><th>字符</th><th>数量</th><th>概率</th><th>自信息量</th><th>概率*自信息量</th></tr>" + oneDetail + "<tr><td>合计</td><td>" + oneElement.value.length + "</td><td>" + PTotal.toFixed(1) + "%</td><td>" + ZiTotal.toFixed(3) + "</td><td>" + symTotal.toFixed(3) + "</td></tr></table>";
+    }
+</script>
+
+<div style="text-align: center">
+    <h3>2：香农编码（任意输入消息概率，利用香农编码方法进行编码，并计算信源熵和编码效率）</h3>
+    <textarea id="twoInput"
+              style="width: 70%;height: 100px;font-size: 18px;font-family: 'Courier New'"
+              placeholder="在此处输入消息概率，概率之间使用“-”隔开"></textarea>
+    <button onclick="twoEdit()" style="display: block;margin: 0 auto;width: 200px;height: 40px">计算</button>
+    <p id="twoDetail"></p>
+    <p id="twoDis"></p>
+</div>
+
+<script>
+    var twoElement = document.getElementById("twoInput");
+    var twoDis = document.getElementById("twoDis");
+
+    //    twoEdit();        //先执行一次对浏览器缓存的数据进行显示
+
+    function twoEdit() {
+        var twoDetail = "";                         //动态添加到DOM
+        var twoArr = 0;                             //初始化数据数为0
+        if (twoElement.value.length > 0) {          //如果数据长度大于0就解析并得到数据个数
+            twoArr = twoElement.value.split("-");
+            twoArr.sort().reverse();
+        }
+        if (twoArr.length) {
+            var P = 0;          //概率
+            var PTotal = 0;     //累加概率
+            var sym = 0;        //信源熵成员
+            var symTotal = 0;   //信源熵（成员和）
+            var maLen = 0;      //码长
+            var maAver = 0;     //平均码长
+            for (var i = 0; i < twoArr.length; i++) {   //格式化数据适合表格
+                if (!isNaN(twoArr[i])) {                //判断是否为数字类型
+                    if (twoArr[i] > 1) {                //单个事件概率不能大于1
+                        alert("事件概率不能大于1");
+                    } else {
+                        P = twoArr[i];                  //得到概率
+                        PTotal += parseFloat(P);        //得到累计概率
+
+                        var maZi = "";                          //定义初始码字为空
+                        var sumP = (PTotal - P).toFixed(3);     //得到累加概率
+
+                        if (isFinite(Math.ceil(-Math.log(P) / Math.LN2))) {                 //判断码长是否为无穷大（在输入分隔符“-”时码长计算为无穷大，之前是立即显示数据，现在改为点击计算后显示，只要数据输入正确这个条件可以省略）
+                            for (var j = 0; j < Math.ceil(-Math.log(P) / Math.LN2); j++) {  //获取连乘次数
+                                sumP *= 2;                  //连乘运算
+                                if (sumP > 1) {             //大于1时减去1并为码字添加“1”
+                                    sumP -= 1;
+                                    maZi = maZi + "1";
+                                } else {                    //小于1时为码字添加“0”
+                                    maZi = maZi + "0";
+                                }
+                            }
+                        }
+
+                        sym = (-P * Math.log(P) / Math.LN2).toFixed(3);             //得到信源熵成员的值
+                        symTotal += parseFloat(sym);                                //得到信源熵
+                        maLen = Math.ceil(-Math.log(P) / Math.LN2);                 //得到码长
+                        maAver += P * maLen;                                        //得到平均码长
+                        //格式化数据适合表格
+                        twoDetail = twoDetail + "<tr><td>" + P + "</td><td>" + (PTotal - P).toFixed(3) + "</td><td>" + (-Math.log(P) / Math.LN2).toFixed(3) + "</td><td>" + maLen + "</td><td>" + maZi + "</td></tr>";
+                    }
+                } else {
+                    alert("检查到非数字数据！请检查您输入的数据");
+                }
+            }
+            if (PTotal.toFixed(3) != 1) {
+                alert("累加概率为：" + PTotal + "，请检查输入数据")
+            } else {
+                //表格数据添加进DOM
+                document.getElementById("twoDetail").innerHTML = "<table><tr><th>概率</th><th>累加概率</th><th>自信息量</th><th>码长</th><th>码字</th></tr>" + twoDetail + "</table>";
+                //添加额外信息
+                twoDis.innerText = "信源熵：" + symTotal.toFixed(3) + "(bps)　　　　平均码长：" + maAver.toFixed(2) + "　　　　编码效率：" + (symTotal / maAver * 100).toFixed(1) + "%";
+            }
+        } else {
+            alert("您没有输入数据");
+        }
+    }
+</script>
+</body>
+</html>
